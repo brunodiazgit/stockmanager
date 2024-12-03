@@ -1,5 +1,5 @@
 export const testing = (req, res) => {
-    return res.status(200).json({ status: "success", message: "probandiumh" })
+    return res.status(200).json({ status: "success", message: "testing endpoint" })
 }
 
 // HOW TO CREATE A PRODUCT
@@ -57,6 +57,76 @@ export const getProducts = async (req, res, pool) => {
     }
 }
 
+//HOW TO GET A PRODUCT BY ID 
+
+export const getProductById = async (req, res, pool) => {
+    const id = req.params.id
+
+    try {
+        const query = `SELECT * FROM PRODUCT WHERE id = $1`
+
+        const result = await pool.query(query, [id])
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({
+                status: "error",
+                message: "Product not found"
+            })
+        }
+
+        return res.status(200).json({
+            status: "success",
+            product: result.rows[0]
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            status: "error",
+            message: "internal server error ! ! !",
+            error: error.message
+        })
+    }
+}
+
+// HOW TO GET PRODUCT BY CATEGORY
+
+export const getProductByCategory = async (req, res, pool) => {
+    const category = req.params.category
+
+    if (!category) {
+        return res.status(400).json({
+            status: "error",
+            message: "Category is required"
+        })
+    }
+
+    try {
+        const query = `SELECT * FROM PRODUCT WHERE category = $1`
+
+        const result = await pool.query(query, [category])
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({
+                status: "error",
+                message: "Product not found"
+            })
+        }
+
+        return res.status(200).json({
+            status: "success",
+            products: result.rows
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            status: "error",
+            message: "internal server error ! ! !",
+            error: error.message
+        })
+    }
+}
+
+
 //HOW TO MODIFY A PRODUCT
 
 export const updateProduct = async (req, res, pool) => {
@@ -107,8 +177,32 @@ export const updateProduct = async (req, res, pool) => {
 
 // HOW TO DELETE A PRODUCT
 
-export const deleteProduct = () => {
-    
-} 
+export const deleteProduct = async (req, res, pool) => {
+    const id = req.params.id
 
+    try {
+        const query = `DELETE FROM PRODUCT WHERE id = $1`
 
+        const deletedProduct = await pool.query(query, [id])
+
+        if (deletedProduct.rowCount === 0) {
+            return res.status(404).json({
+                status: "error",
+                message: "Product not found"
+            })
+        }
+
+        return res.status(200).json({
+            status: "success",
+            message: "A product has been successfully deleted",
+            deletedProduct: deletedProduct.rows[0]
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            status: "error",
+            message: "internal server error ! ! !",
+            error: error.message
+        })
+    }
+}
