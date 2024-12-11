@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useAlert } from "../context/AlertContext"
 
 function Product() {
     const [formValues, setFormValues] = useState({
@@ -7,6 +8,7 @@ function Product() {
         quantity: 0,
         description: ""
     })
+    const { showAlert } = useAlert()
 
     const handleValues = (e) => {
         const { name, value } = e.target
@@ -40,6 +42,15 @@ function Product() {
                 category: '',
                 quantity: 0,
                 description: ''
+            })
+
+
+            showAlert({
+                title: "Create",
+                text: 'The product has been created !',
+                icon: "success",
+                confirmButtonText: 'OK'
+
             })
 
         } catch (error) {

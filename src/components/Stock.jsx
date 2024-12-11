@@ -31,7 +31,7 @@ function Stock() {
             {/* Rows */}
             {products.map((item) => (
                 <div key={item.id} className="grid grid-cols-3 divide-x divide-blue-300 hover:bg-gray-100 transition">
-                    <Link to={`/product/${item.id}`} className="p-3">{item.product_name}</Link>
+                    <Link to={`/product/${item.id}`} className="p-3 text-blue-700 underline ">{item.product_name}</Link>
                     <div className="p-3">{item.category}</div>
                     <div className="p-3">{item.quantity}</div>
                 </div>
