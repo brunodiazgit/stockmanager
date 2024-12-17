@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import { useLanguage } from "../context/LanguageProvider"
 
 function Stock() {
     const [products, setProducts] = useState([])
+    const { language } = useLanguage()
 
     const showProducts = async () => {
         try {
@@ -21,12 +23,12 @@ function Stock() {
     }, [])
 
     return (
-        <div className="grid border border-blue-300 shadow-md rounded-lg divide-y divide-blue-300">
+        <div className="grid border border-blue-300 shadow-md rounded-lg divide-y divide-blue-300 dark:bg-blue-950 dark:text-white">
             {/* Header */}
             <div className="grid grid-cols-3 bg-gray-200 font-bold  divide-x divide-blue-300 text-gray-700">
-                <div className="p-3">Product</div>
-                <div className="p-3">Category</div>
-                <div className="p-3">Stock</div>
+                <div className="p-3">{language === "es" ? "Producto" : "Product"}</div>
+                <div className="p-3">{language === "es" ? "Categoría" : "Category"}</div>
+                <div className="p-3">{language === "es" ? "Cantidad" : "Quantity"}</div>
             </div>
             {/* Rows */}
             {products.map((item) => (
@@ -41,4 +43,3 @@ function Stock() {
 }
 
 export default Stock
-

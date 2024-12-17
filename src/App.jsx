@@ -8,6 +8,7 @@ import Product from "./components/Product"
 import DashBoard from "./components/Dashboard"
 import Stock from "./components/Stock"
 import ProductDetail from "./components/ProductDetail"
+import Settings from "./components/Settings"
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/create" element={<Product />} />
         <Route path="/stock" element={<Stock />} />
         <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </BrowserRouter>
   )
