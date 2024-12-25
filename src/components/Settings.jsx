@@ -7,9 +7,9 @@ function Settings() {
 
 
     return (
-        <div className={`flex flex-col items-center gap-6 p-5 dark:text-white dark:bg-blue-950`}>
-            <h1 className="text-center text-2xl m-3">{language === "es" ? "Ajustes" : "Settings"}</h1>
-            <div className="flex items-center gap-4">
+        <div className={`flex flex-col items-center gap-6 p-5`}>
+            <h1 className="text-center text-2xl md:text-3xl m-3">{language === "es" ? "Ajustes" : "Settings"}</h1>
+            <div className="flex items-center gap-4 text-lg md:text-xl">
                 {language === "es" ? "Modo oscuro" : "Dark Mode"}
                 <div
                     className={`w-12 h-6 flex items-center rounded-full p-1 cursor-pointer transition ${darkmode ? "bg-blue-800" : "bg-gray-300"}`}
@@ -23,7 +23,7 @@ function Settings() {
             </div>
 
             {/* Language Toggle */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 text-lg md:text-xl">
                 {language === "en" ? "Spanish" : "Español"}
                 <div
                     className={`w-12 h-6 flex items-center rounded-full p-1 cursor-pointer transition ${language === "es" ? "bg-blue-800" : "bg-gray-300"}`}

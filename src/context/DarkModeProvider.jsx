@@ -20,8 +20,10 @@ export const DarkModeProvider = ({ children }) => {
     useEffect(() => {
         if (darkmode) {
             document.documentElement.classList.add("dark")
+            document.body.classList.add("dark:bg-gray-900", "dark:text-white")
         } else {
             document.documentElement.classList.remove("dark")
+            document.body.classList.remove("dark:bg-black", "dark:text-white")
         }
     }, [darkmode])
 

@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useLanguage } from "../context/LanguageProvider"
+
 
 function NavBar() {
-    const [isOpen, setIsOpen] = useState(false) 
-    
+    const [isOpen, setIsOpen] = useState(false)
+    const { language } = useLanguage()
+
     const toggleMenu = () => {
         setIsOpen(!isOpen)
     }
@@ -12,7 +15,11 @@ function NavBar() {
         <header className="bg-gray-800 p-4">
             <nav>
                 <div className="flex justify-between items-center">
-                    <Link to={'/'} className="text-white text-xl">Admin</Link>
+
+                    <Link to={'/'} className="text-white text-xl">
+                        Admin
+                    </Link>
+
                     <button
                         className="text-white md:hidden"
                         onClick={toggleMenu}
@@ -22,20 +29,22 @@ function NavBar() {
                         <span className="block w-6 h-0.5 bg-white"></span>
                     </button>
                 </div>
+
                 <ul
-                    className={`md:flex md:space-x-6 ${isOpen ? 'block' : 'hidden'} mt-4 md:mt-0`}
+                    className={`${isOpen ? 'block' : 'hidden'
+                        } md:hidden space-y-4 mt-4`}
                 >
                     <li className="text-white">
-                        <a href="">Dashboard</a>
+                        <Link to="/">{language === 'es' ? "Panel" : "Dashboard"}</Link>
                     </li>
                     <li className="text-white">
-                        <a href="">Add Product</a>
+                        <Link to="/create">{language === 'es' ? "Producto" : "Product"}</Link>
                     </li>
                     <li className="text-white">
-                        <a href="">Storage</a>
+                        <Link to="/stock">{language === 'es' ? "Depósito" : "Storage"}</Link>
                     </li>
                     <li className="text-white">
-                        <a href="">Settings</a>
+                        <Link to="/settings">{language === 'es' ? "Ajustes" : "Settings"}</Link>
                     </li>
                 </ul>
             </nav>

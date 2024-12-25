@@ -16,17 +16,17 @@ app.use(express.json())
 const { Pool } = pkg
 
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'stockManager',
-    password: 'Santana1!',
-    port: 5432
+  user: 'postgres',
+  host: 'localhost',
+  database: 'stockManager',
+  password: 'Santana1!',
+  port: 5432
 })
 
 // Routes
 
 app.use('/api', productRoutes(pool))
 
-app.listen(port, ()=>{
+app.listen(port, () => {
     console.log("The server is running on port: " + port)
 })

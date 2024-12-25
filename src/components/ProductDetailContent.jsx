@@ -5,7 +5,7 @@ function ProductDetailContent({ product, setModal, deleteProduct, setProduct, ha
     const { language } = useLanguage()
 
     return (
-        <div className="flex m-3 dark:bg-blue-950 dark:text-blue-500">
+        <div className="flex m-3 dark:text-blue-500">
             <div className="flex flex-col justify-center items-start gap-3 m-10 text-2xl">
                 <p><strong>{language === "es" ? "Producto: " : "Product: "}</strong> {product.product_name}</p>
                 <p><strong>{language === "es" ? "Categoría: " : "Category: "}</strong> {product.category}</p>
@@ -14,8 +14,8 @@ function ProductDetailContent({ product, setModal, deleteProduct, setProduct, ha
             </div>
 
             <div className="flex flex-col gap-3 m-3">
-                <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={() => setModal(true)}>{language === "es" ? "Editar" : "Edit"}</button>
-                <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => deleteProduct()}>{language === "es" ? "Eliminar" : "Delete"}</button>
+                <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700" onClick={() => setModal(true)}>{language === "es" ? "Editar" : "Edit"}</button>
+                <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700" onClick={() => deleteProduct()}>{language === "es" ? "Eliminar" : "Delete"}</button>
             </div>
 
             {/* Modal */}
